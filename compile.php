@@ -6,9 +6,9 @@ const SOURCE_FILE = 'index.php';
 const DESTINATION_FILE = 'index.html';
 
 
-function getShowName($argv)
+function getShowName($argv, $argc)
 {
-    if (!isset($argv[1])) {
+    if ($argc != 2 || in_array($argv[1], array('--help', '-help', '-h', '-?'))) {
         throw new Exception("Usage: php compile.php <show-name>");
     }
     return $argv[1];
@@ -43,7 +43,7 @@ function writeResult($showPath, $result)
 }
 
 try {
-    $showPath = getShowPath(getShowName($argv));
+    $showPath = getShowPath(getShowName($argv, $argc));
     $result = compile($showPath);
     writeResult($showPath, $result);
     exit("Show compiled successfully to $showPath.\n");
