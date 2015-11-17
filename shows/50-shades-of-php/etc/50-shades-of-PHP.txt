@@ -1,0 +1,555 @@
+The speech is timed to the coming release of PHP7 and is intended to review the state of the language and to give a slap for those who still hesitate to make use of available features.
+
+# Agenda
+
+1. PHP: The Protoduction Way.
+2. Dynamic typing — Is it worth the trouble?
+3. PHP and Unicode — Do we have at least a chance?
+4. PHP Nowadays. The quick overview of features presented in PHP 5.3 - 5.6.
+5. PHP 7: What is all fuzz about?
+6. Q&A session
+
+
+# Вступление
+
+Этот рассказ посвящен скорому релизу PHP 7. Я думаю, большинство из вас уже немного познакомились с изменениями, с новыми фичами, может кто-то устанваливал себе найтли-билд и что-то пробовал. Я не хотел бы концентрироваться на 7 версии, вокруг итак много разговоров о ней. Сегодня мне хотелось бы остановиться на минутку и посмотреть, как все начиналось, как язык развивался, что он из себя представляет сейчас и чего нам ждать от него в ближайшее время. 
+
+# Chapter 1. PHP: The Protoduction Way
+
+    [
+        Chapter 1. PHP: The Protoduction Way
+        *Protoduction*
+        A prototype that ends up in production.
+    ]
+
+    [
+        Расмус Лердорф.
+    ]
+
+Знакомьтесь, это Расмус Лердорф.
+Дело было В 1994 году. У Расмуса была персональная страница в интернете и он захотел отслеживать ее посещения. Для этого он набросал на С набор CGI-программ. Точнее он решил объединить их в набор, т.к. по его словам ему надоело каждый раз делать одно и то же.
+
+    [
+        Announcing the Personal Home Page Tools (PHP Tools) version 1.0.
+        These tools are a set of small tight cgi binaries written in C.
+        They perform a number of functions including:
+        . Logging accesses to your pages in your own private log files
+        . Real-time viewing of log information
+        . Providing a nice interface to this log information
+        . Displaying last access information right on your pages
+        . Full daily and total access counters
+        ...
+        The tools also allow you to implement a guestbook or any other
+        form that needs to write information and display it to users
+        later in about 2 minutes.
+        ...
+    ]
+
+В июне 1995 Расмус анонсировал свои наработки под названием Personal Home Page Tools.
+Вы видите выдержку из этого анонса. Что интересного можно отметить: Расмус просто решил конкретную задачу, которую он сам себе поставил. Т.е. это не было языком программирования вообще.
+Это был инструмент. И какое-то время оставался просто инструментом, предназначенным для работы с формами. 
+
+    [
+        June      1995: PHP Tools 1.0 (Personal Home Page Tools)    Rasmus
+        September 1995: FI (Forms Interpreter)                      Rasmus
+        October   1995: Personal Home Page Construction Kit         Rasmus
+        ...
+    ]
+
+В следующеем обновлении в сентябре Расмус называет его просто Forms Interpreter или FI.
+Но уже через месяц в октябре под новым черновым именем Personal Home Page Construction Kit выходит нечто, являющее собой зачаток языка. 
+
+    [
+        ...
+        April     1996: PHP/FI                                      Rasmus
+        June      1996: PHP/FI 2.0 (beta)                           Rasmus
+        November  1997: PHP/FI 2.0                                  Rasmus
+        ...
+    ]
+
+Апрель 1996 года, Расмус возвращается к названию PHP но объединяет его с FI. Это был тот самый момент перехода от простого инструмента до языка программирования. PHP/FI поддерживал базы данных DBM, mSQL и Postgres95, cookies, пользовательские функции и много другое.
+В июне PHP/FI обретает номер версии: 2.0, но все еще остается бетой аж до ноября 1997.
+
+    [
+        Пример кода на PHP/FI:
+        {code}
+            <!--include /text/header.html-->
+            <!--getenv HTTP_USER_AGENT-->
+            <!--ifsubstr $exec_result Mozilla-->
+              Hey, you are using Netscape!<p>
+            <!--endif-->
+            <!--sql database select * from table where user='$username'-->
+            <!--ifless $numentries 1-->
+              Sorry, that record does not exist<p>
+            <!--endif exit-->
+              Welcome <!--$user-->!<p>
+              You have <!--$index:0--> credits left in your account.<p>
+            <!--include /text/footer.html-->
+        {code}
+    ]
+
+Интересно, что к моменту, когда PHP/FI уже освободился от приставки "бета", его ядро уже начали переписывать.
+
+    [
+        Зеев Сураски
+        Энди Гутманс
+    ]
+
+Вот эти двое: Зеев Сураски и Энди Гутманс.
+
+Они связались с Расмусом онлайн и рассмотрели некоторые идеи по улучшению PHP. Вместе они решили начать работу над новой версией языка. За полгода к проекту подтянулись и другие разработчики со всего мира. И уже в июне 1998 года выходит PHP 3.0.
+
+    [
+        ...
+        June      1998: PHP 3.0 (PHP: Hypertext Preprocessor)       Rasmus, Zeev and Andi and many more.
+        ...
+    ]
+
+Теперь PHP означает "PHP: Hypertext Preprocessor".
+
+(Рекурсивные акронимы весьма популярны в IT мире.)
+
+    [
+        **PHP — PHP: Hypertext Preprocessor**
+        Ace — Ace Code Editor
+        cURL — Curl URL Request Library
+        GNU — GNU's Not Unix
+        Nano — Nano's ANOther editor
+        PIP — PIP Installs Packages
+        YAML — YAML Ain't Markup Language
+    ]
+
+Это был уже почти тот язык, с которым мы знакомы.
+
+    [
+        Rasmus Lerdorf:
+        "I don’t know how to stop it, there was never any intent to write a programming language […] I have absolutely no idea how to write a programming language, I just kept adding the next logical step on the way.
+    ]
+
+Для общения был создан мейл-лист, вы могли подпиcаться на него. Люди со всего мира общались с Расмусом и командой, предлагали что-то спрашивали что-то.
+Например, вот письмо в котором некто спрашивает, как же ему быть с экранированием кавычек?
+Это момент, с которым разобрались еще в 98, но он частенько всплывает и сейчас:
+
+    [
+        Escaping Issue.
+        http://marc.info/?l=php-general&m=90587516531054&w=2
+    ]
+
+Но, в общем-то, ребятам не сиделось, и уже зимой 1998 Зеев и Энди начали перерабатывать PHP снова. Функциональность PHP3 позволяла писать довольно болшие приложения, но дизайн языка не позволял таким приложениям работать эффективно. Это и стало основной целью — улучшение производительности сложных приложений и улучшение модульности. Так, спустя почти два года в мае 2000 года на свет появился PHP 4.0, который базировался на совершенно новом Zend Engine.
+Во время разработки 4 версии Зеев и Энди обосновали Zend Technologies, которая и по сей день занимается разработкой и поддержкой ядра PHP.
+
+    [
+        June      1995: PHP Tools 1.0 (Personal Home Page Tools)    Rasmus
+        September 1995: FI (Forms Interpreter)                      Rasmus
+        October   1995: Personal Home Page Construction Kit         Rasmus
+        April     1996: PHP/FI                                      Rasmus
+        June      1996: PHP/FI 2.0 (beta)                           Rasmus
+        November  1997: PHP/FI 2.0                                  Rasmus
+        June      1998: PHP 3.0 (PHP: Hypertext Preprocessor)       Rasmus, Zeev and Andi and many more.
+        May       2000: PHP 4.0                                     Zeev, Andy in Zend Technologies
+        July      2004: PHP 5                                       Zend Technologies
+        ...
+    ]
+
+Making long story short, спустя еще 4 года в июле 2004 Zend Technologies выпускает заветную, всеми любимую 5 версию PHP. С этого времени разработка языка ведется уже осознано, дизайн обсуждается и улучшается. Так из простого инструмента, идеи вырос язык, которым мы пользуемся.
+
+
+**Вывод:** решайте реальные задачи, это может привести к чему-то полезному.
+**Вывод:** не бойтесь переписывать все с нуля.
+**Вывод:** модульность решает.
+**Вывод:** делитесь, опен-сорс — это сила.
+
+
+# Chapter 2. PHP: Dynamic typing — Why do we love it so much?
+
+
+Что же сделало язык таким популярным и удобным? Модульность — да. Но это не было главным. 
+Я думаю, самым выжным было то, что инструмент соответствовал требованиям того времени: развивался веб, сайты становились динамичными, нужен был язык, который это позволит.
+
+Но было и кое-что еще: в PHP не нужно было заботится о типах данных. PHP сам заботился об этом вместо вас.
+
+    [
+        "A language is dynamically typed if the type is associated with run-time values, and not named variables/fields/etc."
+             – Paul Biggar
+    ]
+
+В динамически типизированном языке тип переменной определяется тем значением, которое она имеет в данный момент. Это значит, что тип переменной может меняться, это значит, что программисту не нужно определять переменную, чтобы использовать ее. 
+
+    [
+        $foo = 5; // int
+        $foo = "hello" // string
+        $foo = [1.2, 3.89] // array of floats
+    ]
+
+Но есть и кое что еще, о чем говорят реже — слабая типизация.
+PHP не только позволяет менять тип переменной (что, согласитесь, не такая уж частая практика), но сам адаптирует значения к нужному типу в случае необходимости.
+
+Очень простой пример на питоне (который, тоже динамически типизирован)
+    
+    [
+        // Python
+        >>> foo = "10"
+        >>> print foo - 5
+        Traceback (most recent call last):
+          File "<stdin>", line 1, in <module>       
+        TypeError: unsupported operand type(s) for -: 'str' and 'int'
+    ]
+
+А вот этот же пример на PHP.
+
+    [
+        // PHP
+        php > $foo = "10";
+        php > print $foo - 5;
+        5
+    ]
+
+Динамическая слабая типизация — это та гибкость, за которую мы любим php, это тот фактор, который снижает порог входа до минимума, позволяя новым людям осваивать язык. Но еще это то, что позволяет нам сосредоточиться на решении задачи без отвлечения на вспомогательные вещи.
+
+**Вывод:** разрабатывая что-либо стремитесь помочь конечному пользователю, постарайтесь максимально решить сторонние проблемы за него и предоставьте ему возможность сосредоточиться на важном.
+
+# Chapter 3. PHP and Unicode — do we have at least a chance?
+
+Есть в PHP одна особенность, которая заставляет сердца молодых биться чаще и сбиваться с ритма:
+
+    [
+        php > echo strlen("Hello");
+        5
+        php > echo strlen("Привет");
+        12
+    ]
+
+Я думаю, ни для кого не секрет, почему так происходит. Строка в php это байтовый массив. Буквы английского алфавита занимают 1 байт, но кириллические буквы занимают два байта, если ваш файл в кодировке UTF-8. Это влияет на работу почти всех функций по обработке строк. 
+В общем-то используя стандартные функции вы никогда не работаете с символами, только с наборами байт.
+
+В феврале 2005 года через полгода после выпуска PHP Андрей Змеевски вместе с небольшой группой единомышленников запустил проект, в котором запланировал полный перевод PHP на Unicode.
+
+Вот скриншоты из доклада самого Андрея, которые показывают цель, которой он хотел достичь:
+
+    [
+        From: http://www.slideshare.net/andreizm/the-good-the-bad-and-the-ugly-what-happened-to-unicode-and-php-6
+        Pages: 51, 52, 53, 54
+    ]
+
+Для разработки нужно было выбрать конкретную кодировку из семейства Юникод. Выбор был между UTF-8, UTF-16 и UTF-32 и пал на UTF-16 как на компромисс между неопределенностью UTF-8 и избыточностью UTF-32.
+
+Этот выбор стал одним из тех факторов, которые привели к краху проекта. Разработка стала слишком сложной технически, слишком мало вовлеченных людей хорошо разбирались в предметной области, и в итоге все просто устали переделывать уже существующий, рабочий код. PHP 6 переместили из транка в ветку, а транком стал PHP 5.4. Некоторые улучшения были портированы, но встроенной поддержки Юникода PHP так и не получил.
+
+Что же есть у нас взамен?
+
+Библиотека Intl.
+
+    [
+        Intl
+        - Collator: provides string comparison capability with support for appropriate locale-sensitive sort orderings.
+        - Number Formatter: allows to display number according to the localized format or given pattern or set of rules, and to parse strings into numbers.
+        - Message Formatter: allows to create messages incorporating data (such as numbers or dates) formatted according to given pattern and locale rules, and parse messages extracting data from them.
+        - Normalizer: provides a function to transform text into one of the Unicode normalization forms, and provides a routine to test if a given string is already normalized.
+        - Locale: provides interaction with locale identifiers in the form of functions to get subtags from locale identifier; parse, compose, match(lookup and filter) locale identifiers.
+    ]
+
+Библиотека Multibyte String.
+
+    [
+        [Multibyte String|http://php.net/manual/ru/book.mbstring.php]
+    ]
+
+**Выводы:** (полностью взяты из доклада Андрея Змеевски)
+
+1. Люди важны. (Слайд 84). Культура разработки PHP такова, что люди работают над тем, что им интересно.
+2. Переписывать существующий большой кодбейз — это тяжело.
+3. Заставить людей делать скучную работу — сложно. Нужно находить способ делать ее интересной.
+4. Ждать результатов длинных итераций сложно. Итерации должны быть короткими, нацеленными на конкретный результат.
+5. Нужно оставаться преданным идее.
+
+
+# Chapter 4. PHP Nowadays
+
+В ходе развития 5 версии в PHP появляется очень много новой функциональности.
+
+    [
+        **Version 5.1.0** (24 Nov 2005)
+        + Added support for class constants and static members for internal classes. 
+        + Added array type hinting.
+        + Added a lot of new functions for arrays, streams processing, PostgreSQL v3, etc.
+        + Many performance improvements
+    ]
+
+    [
+        **Version 5.2.0** (02 Nov 2006)
+        + Added Zip Archive extension.
+        + Added JSON and Filter extensions. 
+        + Added support for constructors in interfaces.
+        + Many-many new improvements
+    ]
+
+    [
+        **Version 5.3.0** (30 Jun 2009)
+        + Added lambda functions and closures.
+        + Added "jump label" operator (limited "goto"). (evil icon)
+        + Added NOWDOC & HEREDOC syntax.
+        + Added "?:" operator. 
+        + Added support for namespaces.
+        + Added support for Late Static Binding.
+        + Added __DIR__ constant.
+    ]
+
+    [
+        **Version 5.4.0** (01 Mar 2012)
+        + Added short array syntax support ([1,2,3])
+        + Added support for Class::{expr}() syntax.
+        + Added support for Traits.
+        + Added closure $this support back.
+        + Added callable typehint
+        + Added array dereferencing support.
+        + Added class member access on instantiation (e.g. (new foo)->bar()) support.
+    ]
+
+    [
+        **Version 5.5.0** (20 Jun 2013)
+        + Added generators and coroutines.
+        + Added "finally" keyword.
+        + Added simplified password hashing API.
+        + Added support for constant array/string dereferencing.
+        + Added Class Name Resolution As Scalar Via "class" Keyword
+        + Added support for non-scalar Iterator keys in foreach
+    ]
+
+    [
+        **Version 5.6.0** (28 Aug 2014)
+        + Added constant scalar expressions syntax.
+        + Added dedicated syntax for variadic functions.
+        + Added an exponentiation operator (**).
+        + Added use function and use const.
+    ]
+
+Сейчас PHP обладает очень мощным и гибким функционалом, позволяющим писать код эффективно, писать понятный код, код который можно поддерживать, развивать, улучшать и любить. Откройте Хабр, откройте книги, откройте php.net, откройте для себя open-source, читайте чужой код, учитесь у других и помогайте другим. 
+
+Теперь дело за вами.
+
+    [
+        Все дело за вами.
+    ]
+
+# Chapter 5. PHP 7: What is all fuzz about?
+
+Итак завтра, 29 октября планирует выпуск последнего 6-го релиз-кандидата.
+Финальный релиз PHP 7 намечен на 12 ноября. 
+
+    [
+        Oct 29 2015 RC 6
+        Nov 12 2015 Final
+    ]
+
+За последние полгода интернет наводнился различными обзорами новой функциональности. Рекомендую ознакомится с детальным обзором с не менее попсовым названием, чем этот рассказ: "What to expect when you're expecting.".
+
+Самым важным изменением, на мой взгляд, является значительный прирост производительности PHP. Этот прирост был достигнут благодаря изменениям, названым phpng (next generation) — на самом деле, это просто ветка, в которой велась работа над импрувментом ядра. Эту ветку смерджили в транк.
+
+Много разных бенчмарков можно найти. Вот результаты одного из них:
+
+Wordpress:
+
+    [
+        https://kinsta.com/wp-content/uploads/2015/05/hhvm-php7-benchmark.jpg
+    ]
+
+Drupal:
+
+    [
+        https://kinsta.com/wp-content/uploads/2015/05/PHP-7-as-a-clear-winner-over-HHVM.jpg
+    ]
+
+Т.е. можно говорить о приросте вдвое по сравнению с версией 5.6. И это замечательно.
+
+Но, конечно, не обошлось и без синтаксических плюшек.
+Краткий список новинок:
+
+    [
+        + Abstract syntax tree & Uniform Variable Syntax
+        + Scalar Type Hints & Return Types
+        ...
+    ]
+
+*Abstract syntax tree*
+Исправляет многие пограничные случаи использования yield и list.
+
+*Uniform Variable Syntax*
+Вносит определенность в случае использование синтаксиса пермененной-переменной.
+
+*Scalar Type Hints & Return Types*
+Теперь можно полноценно использовать скалярные типы в тайпхинтинге.
+Интересно, что в стандартном режиме здесь снова вступает в силу слабая типизация. Так в данном случае PHP не выдаст ошибку, а приведет тип к нужному:
+
+    [
+        (function(string $a) { var_dump($a); })(15); // string(2) "15"
+    ]
+
+Но не всегда. Так:
+
+    [
+        (function(array $a) { var_dump($a); })(15); 
+        // Fatal error: Uncaught TypeError: Argument 1 passed to {closure}() must be of the type array, integer given
+    ]
+
+И, конечно же, возвращаемые типы работают по тому же принципу:
+
+    [
+        $a = (function(string $a) : int {
+            return $a; // string
+        })(15);
+        var_dump($a); // int(15)
+    ]
+
+Это поведение можно отключить с помощью вот такой директивы:
+
+    [
+    <?php
+    declare(strict_types=1); // must be the first line
+    ...
+    ?>
+    ]
+
+*Combined Comparison Operator*
+
+    [
+        + Abstract syntax tree & Uniform Variable Syntax
+        + Scalar Type Hints & Return Types
+        + Combined Comparison Operator
+        + ...
+    ]
+
+Spaceship operator — новый оператор, который может быть использован при сортировке.
+
+    [
+        <=>
+    ]
+
+Все просто: он возварщает 1 или -1 или 0.
+
+    [
+        $a <=> $b
+        instead of
+        ($a < $b) ? -1 : (($a > $b) ? 1 : 0);
+    ]
+
+*Null Coalesce Operator*
+
+    [
+        + Abstract syntax tree & Uniform Variable Syntax
+        + Scalar Type Hints & Return Types
+        + Combined Comparison Operator
+        + Null Coalesce Operator
+        ...
+    ]
+
+Оператор принимает два операнда и возвращает первый, не равный null. Самое главное, что он работает, как isset(), т.е. не генерирует ошибку в случае, если один из операндов не определен вообще.
+
+    [
+        ??
+    ]
+
+    [
+        $config = $config ?? $this->config ?? static::$defaultConfig;
+        instead of
+        $config = isset($config) ? $config 
+            : isset($this->config) ? $this->config : static::$defaultConfig;
+    ]
+
+*Bind Closure on Call*
+
+    [
+        + Abstract syntax tree & Uniform Variable Syntax
+        + Scalar Type Hints & Return Types
+        + Combined Comparison Operator
+        + Null Coalesce Operator
+        + Bind Closure on Call
+        ...
+    ]
+
+Теперь можно на лету забайндить лямбду на объект:
+
+    [
+        <?php
+        class Person {
+            public $name = 'Bob';
+        }
+        (function() {
+            echo $this->name;
+        })->call(new Person);
+        // Bob
+        ?>
+    ]
+
+*Group Use Declarations*
+
+    [
+        <?php
+        use God\Save\{
+            TheQueen,
+            TheKing,
+            Whatever
+        }
+        ?>
+    ]
+
+*Generators return expressions and delegation*
+
+    [
+        <?php
+            
+        function hello() {
+             yield "Hello";
+             yield "World!";
+             yield from goodbye();
+             return "Whew!";
+        }
+        function goodbye() {
+             yield "Goodbye";
+             yield "Moon!";
+        }
+        $gen = hello();
+        foreach ($gen as $value) {
+             echo $value, ' '; // Hello World! Goodbye Moon!
+        }
+        echo $gen->getReturn(); // Whew!
+        ?>
+    ]
+
+*Engine Exceptions*
+
+Теперь в случае фаталов вместо ошибки PHP выбросит исключение. Это позволяет аккуратно его захендлить и вернуться в исполнению вашего кода. Новая иерархия исключений выглядит следующим образом:
+
+    [
+        Throwable                                (Interface)
+        ├── Exception                            (Predefined)
+        │   ├── ErrorException                   (Predefined)
+        │   ├── LogicException                   (SPL)
+        │   │   ├── BadFunctionCallException     (SPL)
+        │   │   │   └─ BadMethodCallException    (SPL)
+        │   │   ├── DomainException              (SPL)
+        │   │   ├── InvalidArgumentException     (SPL)
+        │   │   ├── LengthException              (SPL)
+        │   │   └── OutOfRangeException          (SPL)
+        │   └── RuntimeException                 (SPL)
+        │       ├── OutOfBoundsException         (SPL)
+        │       ├── RangeException               (SPL)
+        │       ├── OverflowException            (SPL)
+        │       ├── UnderflowException           (SPL)
+        │       └── UnexpectedValueException     (SPL)
+        └── Error                                (Predefined)
+            ├── ArithmeticError                  (Predefined)
+            │   └── DivisionByZeroError          (Predefined)
+            ├── AssertionError                   (Predefined)
+            ├── ParseError                       (Predefined)
+            └── TypeError                        (Predefined)
+    ]
+
+
+Итак, стоит ли переключаться на новую версию php? 
+Мой ответ: да.
+
+**Вывод:** да ну, какие здесь выводы :)
+
+(!) Write a piece of code with all listed features:
+namespaces, lambda, closure, type hint, returned type, short array syntax, ?:, **, ??, closure $this support, array/string dereferencing, generators, non-scalar Iterator keys in foreach, "finally", constant scalar expressions, variadic functions, importing function form namespace.
+

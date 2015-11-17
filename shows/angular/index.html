@@ -1,0 +1,643 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>AngularJS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/bower_components/shower-bright/styles/screen.css">
+    <link rel="stylesheet" href="styles/angular.css">
+
+    <script src="/bower_components/shower-core/shower.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+
+    <link rel="stylesheet" href="/assets/styles/highlight/solarized_light.min.css">
+    <script src="/assets/scripts/highlight/highlight.min.js"></script>
+</head>
+<body class="list" data-ng-app="angulardemo">
+    <header class="caption">
+        <h1>AngularJS is super cool.</h1>
+        <p>By Max.</p>
+    </header>
+    <section class="slide cover h" id="Home">
+    <div>
+        <img src="pictures/angular-bg.png" alt="">
+    </div>
+</section><section class="slide cover w" id="Title">
+    <div>
+        <h2>AngularJS is super cool.</h2>
+        <p>By Max.</p>
+        <img src="pictures/background.png" alt="">
+    </div>
+</section><section class="slide cover w" id="MVW">
+    <div>
+        <h2>AngularJS is <strong>MVW</strong>.</h2>
+        <h3 class="next"><strong>Which is:</strong></h3>
+        <ul>
+            <li class="next">Model</li>
+            <li class="next">View</li>
+            <li class="next">WTF?
+                <span class="next">&mdash; Whatever</span>
+            </li>
+        </ul>
+        <img src="pictures/background.png" alt="">
+    </div>
+</section><section class="slide cover w" id="MVW-Quote">
+    <div>
+        <h2>Whatever?</h2>
+        <div class="next">
+            <blockquote>
+                &mdash; <strong>I'd rather see developers build kick-ass apps</strong> that are well-designed
+                and follow separation of concerns, than see them waste time arguing about MV* nonsense.
+                And for this reason, <strong>I hereby declare AngularJS to be MVW framework &mdash; Model-View-Whatever.</strong>
+                Where Whatever stands for &ldquo;whatever works for you&rdquo;.
+            </blockquote>
+            <strong class="pull-right">Igor Minar</strong><br class="clear"/>
+            <small class="pull-right">Source: <a href="https://plus.google.com/+AngularJS/posts/aZNVhj355G2">https://plus.google.com/+AngularJS/posts/aZNVhj355G2</a></small>
+        </div>
+        <img src="pictures/background.png" alt="">
+    </div>
+</section><section class="slide cover w shout" id="Core-concepts-title">
+    <div>
+        <h2>Core concepts</h2>
+        <img src="pictures/background.png" alt="">
+    </div>
+</section><section class="slide" id="Core-concepts-1">
+    <div>
+        <h2>Core concepts</h2>
+        <table class="no-margin">
+            <tr class="next">
+                <th>Template</th>
+                <td>HTML and ...</td>
+            </tr>
+            <tr class="next">
+                <th>Directive</th>
+                <td>... a few new attributes*. <br><small>* With a powerful backend.</small></td>
+            </tr>
+            <tr class="next">
+                <th>Model</th>
+                <td>Just data, nothing more.</td>
+            </tr>
+            <tr class="next">
+                <th>Scope</th>
+                <td>A context where the model is used.<br><small>The center of the Angular Universe.</small></td>
+            </tr>
+            <tr class="next">
+                <th>Expressions</th>
+                <td>Access to data and functions in the scope.</small></td>
+            </tr>
+        </table>
+        <span class="next">...</span>
+    </div>
+</section><section class="slide" id="Core-concepts-2">
+    <div>
+        <h2>Core concepts</h2>
+
+        <table>
+            <tr>
+                <td colspan="2">
+                    ...
+                </td>
+            </tr>
+            <tr class="next">
+                <th>Filter</th>
+                <td>Formatting and filtering.</td>
+            </tr>
+            <tr class="next">
+                <th>Controller</th>
+                <td>Business logic, related to View layer.</td>
+            </tr>
+            <tr class="next">
+                <th>Service</th>
+                <td>Reusable business logic, <small>not related with View layer.</small></td>
+            </tr>
+            <tr class="next">
+                <th>Module</th>
+                <td>Container for all this stuff.</td>
+            </tr>
+        </table>
+        <p><small>Find out more in the
+                <a href="https://docs.angularjs.org/guide/concepts">Conceptual Overview</a>.</small></p>
+    </div>
+</section><section class="slide cover w" id="Two-way-binding-title">
+    <div>
+        <h2>Two-way binding</h2>
+        <img src="pictures/two-way-binding-bg.jpg" alt="">
+    </div>
+</section><section class="slide" id="Two-way-binding-diagrams">
+    <div>
+        <h2>Data Binding ...</h2>
+        <div class="pull-left col-1-2">
+            <h3>... in Classical Template Systems</h3>
+            <img src="pictures/One_Way_Data_Binding.png" alt="One-Way Data Binding"
+                 width="400" height="255"/>
+        </div>
+        <div class="pull-left col-1-2">
+            <h3>... in Angular Templates</h3>
+            <img src="pictures/Two_Way_Data_Binding.png" alt="One-Way Data Binding"
+                 width="400" height="290"/>
+        </div>
+    </div>
+</section><section class="slide" id="Two-way-binding-example1">
+    <div>
+        <h2>Two-way binding example <sup>(supper-dummy)</sup></h2>
+        <div class="example-source"
+     data-ng-controller="example1Controller">
+    <label>Enter something:</label>
+    <input type="text" data-ng-model="something" />
+    <div>You've entered: <strong>{{ something }}</strong></div>
+</div>        <div class="fs-80 next" data-ng-non-bindable>
+            <hr/>
+            <pre class="code no-margin">
+            <code class="html">&lt;div data-ng-app&gt;</code>
+<code class="html">    &lt;label&gt;Enter something:&lt;/label&gt;</code>
+<code class="html">    &lt;input type=&quot;text&quot; data-ng-model=&quot;something&quot; /&gt;</code>
+<code class="html">    &lt;p&gt;You've entered: &lt;strong&gt;{{ something }}&lt;/strong&gt;&lt;/p&gt;</code>
+<code class="html">&lt;/div&gt;</code>            </pre>
+            <hr/>
+        </div>
+        <p class="next">&mdash; No JavaScript. At all.</p>
+    </div>
+</section><section class="slide cover w" id="Two-way-binding-magic">
+    <div>
+        <img src="pictures/sponge.jpg" alt="">
+    </div>
+</section><section class="slide" id="Two-way-binding-example2">
+    <div>
+        <h2>Two-way binding example <sup>(pro)<sup>(still so dummy)</sup></sup></h2>
+        <div class="example-source"
+             data-ng-controller="example2Controller">
+            <div class="pull-left col-1-2">
+    <label>Add contact:<br>
+        <input type="text" data-ng-model="newContact" />
+    </label>
+    <button data-ng-click="addContact(newContact)">add</button>
+    <div data-ng-show="displayHelp">
+        <small>Format is wrong <small>(never write such messages)</small></small>
+    </div>
+</div>
+<div class="pull-left col-1-2">
+    All contacts:<br>
+    <p class="no-gap no-margin">
+        <small>{{ contacts | json }}</small>
+    </p>
+</div>            <br class="clear"/>
+            <hr>
+            <div class="pull-left col-1-2">
+    Filter by:<br>
+    <input type="text" data-ng-model="query" />
+</div>
+<div class="pull-left col-1-2">
+    Filtered:
+    <ul class="no-gap">
+        <li data-ng-repeat="contact in contacts | filter:query">
+            <small>{{ contact | contactInfo }}</small>
+        </li>
+    </ul>
+</div>        </div>
+    </div>
+</section><section class="slide full-page" id="Two-way-binding-source2.1">
+    <div>
+        <h2>Two-way binding example <sup>(pro)<sup>(still so dummy)</sup></sup></h2>
+        <div class="example-source"
+             data-ng-controller="example2Controller">
+            <div class="pull-left col-1-2">
+    <label>Add contact:<br>
+        <input type="text" data-ng-model="newContact" />
+    </label>
+    <button data-ng-click="addContact(newContact)">add</button>
+    <div data-ng-show="displayHelp">
+        <small>Format is wrong <small>(never write such messages)</small></small>
+    </div>
+</div>
+<div class="pull-left col-1-2">
+    All contacts:<br>
+    <p class="no-gap no-margin">
+        <small>{{ contacts | json }}</small>
+    </p>
+</div>            <br class="clear"/>
+            <hr>
+            <div class="fs-65" data-ng-non-bindable>
+                <pre class="code"><code class="html">&lt;div data-ng-controller=&quot;example2Controller&quot;&gt;</code>
+<code class="html">    &lt;div&gt;</code>
+<code class="html">        &lt;label&gt;Add contact:&lt;br&gt;</code>
+<code class="html">            &lt;input type=&quot;text&quot; data-ng-model=&quot;newContact&quot; /&gt;</code>
+<code class="html">        &lt;/label&gt;</code>
+<code class="html">        &lt;button data-ng-click=&quot;addContact(newContact)&quot;&gt;add&lt;/button&gt;</code>
+<code class="html">        &lt;div data-ng-show=&quot;displayHelp&quot;&gt;</code>
+<code class="html">            &lt;small&gt;Format is wrong&lt;/small&gt;</code>
+<code class="html">        &lt;/div&gt;</code>
+<code class="html">    &lt;/div&gt;</code>
+<code class="html">    &lt;div&gt;</code>
+<code class="html">        All contacts:&lt;br&gt;&lt;small&gt;{{ contacts | json }}&lt;/small&gt;</code>
+<code class="html">    &lt;/div&gt;</code>
+<code class="html">    &lt;!-- ... --&gt;</code>
+<code class="html">&lt;/div&gt;</code></pre>            </div>
+        </div>
+    </div>
+</section><section class="slide full-page" id="Two-way-binding-source2.2">
+    <div>
+        <h2>Two-way binding example <sup>(pro)<sup>(still so dummy)</sup></sup></h2>
+        <div class="example-source"
+             data-ng-controller="example2Controller">
+            <div class="pull-left col-1-2">
+    <label>Add contact:<br>
+        <input type="text" data-ng-model="newContact" />
+    </label>
+    <button data-ng-click="addContact(newContact)">add</button>
+    <div data-ng-show="displayHelp">
+        <small>Format is wrong <small>(never write such messages)</small></small>
+    </div>
+</div>
+<div class="pull-left col-1-2">
+    All contacts:<br>
+    <p class="no-gap no-margin">
+        <small>{{ contacts | json }}</small>
+    </p>
+</div>            <br class="clear"/>
+            <hr>
+            <div class="fs-65" data-ng-non-bindable>
+                <pre class="code"><code class="javascript">angular.module(&quot;angulardemo&quot;)</code>
+<code class="javascript">    .controller(&quot;example2Controller&quot;, function($scope) {</code>
+<code class="javascript">        $scope.contacts = [];</code>
+<code class="javascript">        $scope.addContact = function(newContact) {</code>
+<code class="javascript">            var contact = parseContact(newContact);</code>
+<code class="javascript">            if (!contact) {</code>
+<code class="javascript">                $scope.displayHelp = true;</code>
+<code class="javascript">                return;</code>
+<code class="javascript">            }</code>
+<code class="javascript">            $scope.contacts.push(contact);</code>
+<code class="javascript">            $scope.newContact = &quot;&quot;;</code>
+<code class="javascript">            $scope.displayHelp = false;</code>
+<code class="javascript">        };</code>
+<code class="javascript">        // ...</code>
+<code class="javascript">    });</code></pre>            </div>
+        </div>
+    </div>
+</section><section class="slide full-page" id="Two-way-binding-source2.3">
+    <div>
+        <h2>Two-way binding example <sup>(pro)<sup>(still so dummy)</sup></sup></h2>
+        <div class="example-source"
+             data-ng-controller="example2Controller">
+            <div class="pull-left col-1-2">
+    <label>Add contact:<br>
+        <input type="text" data-ng-model="newContact" />
+    </label>
+    <button data-ng-click="addContact(newContact)">add</button>
+    <div data-ng-show="displayHelp">
+        <small>Format is wrong <small>(never write such messages)</small></small>
+    </div>
+</div>
+<div class="pull-left col-1-2">
+    All contacts:<br>
+    <p class="no-gap no-margin">
+        <small>{{ contacts | json }}</small>
+    </p>
+</div>            <br class="clear"/>
+            <hr>
+            <div class="fs-65" data-ng-non-bindable>
+                <pre class="code"><code class="javascript">angular.module(&quot;angulardemo&quot;)</code>
+<code class="javascript">    .controller(&quot;example2Controller&quot;, function($scope) {</code>
+<code class="javascript">        // ...</code>
+<code class="javascript">&nbsp;</code>
+<code class="javascript">        $scope.$watch(&quot;newContact&quot;, function(newValue, oldValue) {</code>
+<code class="javascript">            if (!newValue.length) {</code>
+<code class="javascript">                $scope.displayHelp = false;</code>
+<code class="javascript">            }</code>
+<code class="javascript">        });</code>
+<code class="javascript">    });</code></pre>            </div>
+        </div>
+    </div>
+</section><section class="slide full-page" id="Two-way-binding-source2.4">
+    <div>
+        <h2>Two-way binding example <sup>(pro)<sup>(still so dummy)</sup></sup></h2>
+        <div class="example-source"
+             data-ng-controller="example2Controller">
+            <div class="pull-left col-1-3 no-gap">
+    <label>Add contact:<br>
+        <input type="text" data-ng-model="newContact" />
+    </label>
+    <button data-ng-click="addContact(newContact)">add</button>
+    <div data-ng-show="displayHelp">
+        <small>Format is wrong <small>(never do so)</small></small>
+    </div>
+</div>
+<div class="pull-left col-1-3 no-gap">
+    Filter by:<br>
+    <input type="text" data-ng-model="query" />
+</div>
+<div class="pull-left col-1-3 no-gap">
+    Filtered:
+    <ul class="no-gap no-margin">
+        <li data-ng-repeat="contact in contacts | filter:query">
+            <small>{{ contact | contactInfo }}</small>
+        </li>
+    </ul>
+</div>            <br class="clear"/>
+            <hr>
+            <div class="fs-65" data-ng-non-bindable>
+                <pre class="code no-margin">
+                <code class="html">&lt;input type=&quot;text&quot; data-ng-model=&quot;query&quot; /&gt;</code>
+<code class="html">&lt;!-- ... --&gt;</code>
+<code class="html">&lt;ul&gt;&lt;li data-ng-repeat=&quot;contact in contacts | filter:query&quot;&gt;</code>
+<code class="html">    &lt;small&gt;{{ contact | contactInfo }}&lt;/small&gt;</code>
+<code class="html">&lt;/li&gt;&lt;/ul&gt;</code>                </pre>
+                <hr>
+                <pre class="code"><code class="javascript">angular.module(&quot;angulardemo&quot;)</code>
+<code class="javascript">    .controller(&quot;example2Controller&quot;, function($scope) {/* ... */});</code>
+<code class="javascript">    .filter(&quot;contactInfo&quot;, function() {</code>
+<code class="javascript">        return function(input) {</code>
+<code class="javascript">            var name = input.firstName &amp;&amp; input.lastName</code>
+<code class="javascript">                ? input.firstName + &quot; &quot; + input.lastName : null;</code>
+<code class="javascript">            return input.email</code>
+<code class="javascript">                ? (name ? name + &quot; &lt;&quot; + input.email + &quot;&gt;&quot; : input.email) : name;</code>
+<code class="javascript">        }</code>
+<code class="javascript">    });</code></pre>            </div>
+        </div>
+    </div>
+</section><section class="slide cover h   " id="Dependency-injection-title">
+    <div>
+        <h2>Dependency injection</h2>
+        <img src="pictures/dependencies.png" alt="">
+    </div>
+</section><section class="slide" id="Dependency-injection-example3.1">
+    <div>
+        <h2>Dependency injection example <sup>(dummy)</sup></h2>
+        <div class="example-source"
+             data-ng-controller="example3Controller">
+            <div class="pull-left col-1-2">
+    <div class="small-gap">
+        <label><strong>UAH:</strong> <input type="number" data-ng-model="amount" /></label>
+    </div>
+</div>
+<div class="pull-left col-1-2">
+    <div class="small-gap">
+        <div class="pull-left col-1-3"><strong>USD:</strong> {{ convert(amount, "UAH", "USD") | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>EUR:</strong> {{ convert(amount, "UAH", "EUR") | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>GBP:</strong> {{ convert(amount, "UAH", "GBP") | number:2 }}</div>
+    </div>
+</div>            <br class="clear"/>
+            <hr>
+            <div class="fs-65" data-ng-non-bindable>
+                <pre class="code no-margin">
+                <code class="html">&lt;div&gt;UAH: &lt;input type=&quot;text&quot; data-ng-model=&quot;amount&quot; /&gt;&lt;/div&gt;</code>
+<code class="html">&lt;div&gt;USD: {{ convert(amount, &quot;UAH&quot;, &quot;USD&quot;) | number:2 }}&lt;/div&gt;</code>
+<code class="html">&lt;div&gt;EUR: {{ convert(amount, &quot;UAH&quot;, &quot;EUR&quot;) | number:2 }}&lt;/div&gt;</code>
+<code class="html">&lt;div&gt;GBP: {{ convert(amount, &quot;UAH&quot;, &quot;GBP&quot;) | number:2 }}&lt;/div&gt;</code>                </pre>
+            </div>
+            <div class="next fs-65" data-ng-non-bindable>
+                <hr>
+                <pre class="code"><code class="javascript">angular.module(&quot;angulardemo&quot;)</code>
+<code class="javascript">    .controller(&quot;example3Controller&quot;, function($scope, ExchangeRateDummy) {</code>
+<code class="javascript">        $scope.convert = function(amount, from, to) {</code>
+<code class="javascript">            var rate = ExchangeRateDummy.getRate(from, to);</code>
+<code class="javascript">            return (parseFloat(amount) || 0) * (rate.rate || 0);</code>
+<code class="javascript">        }</code>
+<code class="javascript">    });</code></pre>            </div>
+        </div>
+    </div>
+</section><section class="slide" id="Dependency-injection-example3.2">
+    <div>
+        <h2>Dependency injection example <sup>(dummy)</sup></h2>
+        <div class="example-source"
+             data-ng-controller="example3Controller">
+            <div class="pull-left col-1-2">
+    <div class="small-gap">
+        <label><strong>UAH:</strong> <input type="number" data-ng-model="amount" /></label>
+    </div>
+</div>
+<div class="pull-left col-1-2">
+    <div class="small-gap">
+        <div class="pull-left col-1-3"><strong>USD:</strong> {{ convert(amount, "UAH", "USD") | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>EUR:</strong> {{ convert(amount, "UAH", "EUR") | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>GBP:</strong> {{ convert(amount, "UAH", "GBP") | number:2 }}</div>
+    </div>
+</div>            <br class="clear"/>
+            <hr>
+            <div class="fs-65" data-ng-non-bindable>
+                <pre class="code"><code class="javascript">angular.module(&quot;angulardemo&quot;)</code>
+<code class="javascript">    .factory(&quot;ExchangeRateDummy&quot;, function() {</code>
+<code class="javascript">        var rates = {</code>
+<code class="javascript">            &quot;UAHUSD&quot;: { from: &quot;UAH&quot;, to: &quot;USD&quot;, rate: 0.06 },</code>
+<code class="javascript">            &quot;UAHEUR&quot;: { from: &quot;UAH&quot;, to: &quot;EUR&quot;, rate: 0.05 },</code>
+<code class="javascript">            &quot;UAHGBP&quot;: { from: &quot;UAH&quot;, to: &quot;GBP&quot;, rate: 0.04 }</code>
+<code class="javascript">        };</code>
+<code class="javascript">        return {</code>
+<code class="javascript">            getRate: function(from, to) {</code>
+<code class="javascript">                return (from + to in rates) ? rates[from + to] : {};</code>
+<code class="javascript">            }</code>
+<code class="javascript">        }</code>
+<code class="javascript">    });</code></pre>            </div>
+        </div>
+    </div>
+</section><section class="slide" id="Dependency-injection-example4.1">
+    <div>
+        <h2>Dependency injection example <sup>(pro)</sup></h2>
+        <div class="example-source"
+             data-ng-controller="example4Controller">
+            <div class="pull-left col-1-2">
+    <div class="small-gap">
+        <label><strong>UAH:</strong> <input type="number" data-ng-model="amount" /></label>
+    </div>
+</div>
+<div class="pull-left col-1-2">
+    <div class="small-gap">
+        <div class="pull-left col-1-3"><strong>USD:</strong> {{ converted.USD | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>EUR:</strong> {{ converted.EUR | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>GBP:</strong> {{ converted.GBP | number:2 }}</div>
+    </div>
+</div>            <br class="clear"/>
+            <hr>
+            <div class="fs-65 next" data-ng-non-bindable>
+                <pre class="code no-margin">
+                <code class="html">&lt;div&gt;UAH: &lt;input type=&quot;text&quot; data-ng-model=&quot;amount&quot; /&gt;&lt;/div&gt;</code>
+<code class="html">&lt;div&gt;USD: {{ converted.USD | number:2 }}&lt;/div&gt;</code>
+<code class="html">&lt;div&gt;EUR: {{ converted.EUR | number:2 }}&lt;/div&gt;</code>
+<code class="html">&lt;div&gt;GBP: {{ converted.GBP | number:2 }}&lt;/div&gt;</code>                </pre>
+            </div>
+        </div>
+    </div>
+</section><section class="slide full-page" id="Dependency-injection-example4.2">
+    <div>
+        <h2>Dependency injection example <sup>(pro)</sup></h2>
+        <div class="example-source"
+             data-ng-controller="example4Controller">
+            <div class="pull-left col-1-2">
+    <div class="small-gap">
+        <label><strong>UAH:</strong> <input type="number" data-ng-model="amount" /></label>
+    </div>
+</div>
+<div class="pull-left col-1-2">
+    <div class="small-gap">
+        <div class="pull-left col-1-3"><strong>USD:</strong> {{ converted.USD | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>EUR:</strong> {{ converted.EUR | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>GBP:</strong> {{ converted.GBP | number:2 }}</div>
+    </div>
+</div>            <br class="clear"/>
+            <hr>
+            <div class="fs-60" data-ng-non-bindable>
+                <pre class="code no-margin">
+                <code class="javascript">angular.module(&quot;angulardemo&quot;)</code>
+<code class="javascript">    .controller(&quot;example4Controller&quot;, function($scope, ExchangeRate) {</code>
+<code class="javascript">        $scope.converted = {&quot;USD&quot;: 0, &quot;EUR&quot;: 0, &quot;GBP&quot;: 0};</code>
+<code class="javascript">        $scope.$watch(&quot;amount&quot;, function(amount) {</code>
+<code class="javascript">            angular.forEach($scope.converted, function(convertedValue, currency) {</code>
+<code class="javascript">                ExchangeRate.getRate(&quot;UAH&quot;, currency).then(function(response) {</code>
+<code class="javascript">                    $scope.converted[currency] = (parseFloat(amount) || 0)</code>
+<code class="javascript">                        * (response.data.rate || 0);</code>
+<code class="javascript">                });</code>
+<code class="javascript">            });</code>
+<code class="javascript">        });</code>
+<code class="javascript">    })</code>
+<code class="javascript">    .factory(&quot;ExchangeRate&quot;, [&quot;$http&quot;, function($http) {</code>
+<code class="javascript">        var apiUrl = &quot;http://jsonrates.com/get/&quot;;</code>
+<code class="javascript">        var apiKey = &quot;jr-1c7042ea799d59b6daa30515862ec36c&quot;;</code>
+<code class="javascript">        return {</code>
+<code class="javascript">            getRate: function(from, to) {</code>
+<code class="javascript">                return $http.jsonp(apiUrl + &quot;?from=&quot; + from + &quot;&amp;to=&quot; + to</code>
+<code class="javascript">                    + &quot;&amp;apiKey=&quot; + apiKey + &quot;&amp;callback=JSON_CALLBACK&quot;, {cache: true});</code>
+<code class="javascript">            }</code>
+<code class="javascript">        }</code>
+<code class="javascript">    }]);</code>                </pre>
+            </div>
+        </div>
+    </div>
+</section><section class="slide cover w" id="Dependency-injection-science">
+    <div>
+        <img src="pictures/science.jpg" alt="">
+    </div>
+</section><section class="slide cover w" id="Directives-title">
+    <div>
+        <h2>Directives</h2>
+        <h3 class="next">in a
+            <a href="http://agile.tools.me" target="_blank">real-life project</a>
+        </h3>
+        <img src="pictures/painted-arrows.jpg" alt="">
+    </div>
+</section><section class="slide full-page" id="Directives-example5.1">
+    <div>
+        <h2>Cache manager directive</h2>
+        <div class="example-source">
+            <div class="fs-65" data-ng-non-bindable>
+                <pre class="code"><code class="html">&lt;!-- app/templates/index.html --&gt;</code>
+<code class="html">&lt;footer class=&quot;container-fluid&quot;&gt;</code>
+<code class="html">    ...</code>
+<code class="html">    &lt;div data-cache-manager&gt;&lt;/div&gt;</code>
+<code class="html">    ...</code>
+<code class="html">&lt;/footer&gt;</code></pre>            </div>
+            <div class="next fs-65" data-ng-non-bindable>
+                <hr>
+                <pre class="code no-margin">
+                <code class="html">&lt;!-- app/templates/cache-manager.directive.html --&gt;</code>
+<code class="html">&lt;div class=&quot;cache-manager pull-right&quot;&gt;</code>
+<code class="html">    &lt;button type=&quot;button&quot; data-ng-click=&quot;clear()&quot;&gt;Clear Cache&lt;/button&gt;</code>
+<code class="html">&lt;/div&gt;</code>                </pre>
+            </div>
+        </div>
+    </div>
+</section><section class="slide full-page" id="Directives-example5.2">
+    <div>
+        <h2>Cache manager directive</h2>
+        <div class="example-source">
+            <div class="fs-65" data-ng-non-bindable>
+                <pre class="code"><code class="javascript">// app/js/modules/agile/directives/cache_manager.js</code>
+<code class="javascript">angular.module(&quot;agile.directives&quot;)</code>
+<code class="javascript">    .directive(&quot;cacheManager&quot;, [</code>
+<code class="javascript">        &quot;$templateCache&quot;, &quot;localStorageService&quot;, &quot;Helper&quot;, &quot;TEMPLATES_URL&quot;,</code>
+<code class="javascript">        function($templateCache, Storage, Helper, TEMPLATES_URL) {</code>
+<code class="javascript">&nbsp;</code>
+<code class="javascript">            function controller($scope) {</code>
+<code class="javascript">                $scope.clear = function() {</code>
+<code class="javascript">                    $templateCache.removeAll();</code>
+<code class="javascript">                    Storage.clearAll();</code>
+<code class="javascript">                    Helper.setAlert(&quot;success&quot;, &quot;Cache has been cleared.&quot;)</code>
+<code class="javascript">                }</code>
+<code class="javascript">            }</code>
+<code class="javascript">&nbsp;</code>
+<code class="javascript">            return {</code>
+<code class="javascript">                scope: {},</code>
+<code class="javascript">                controller: [&quot;$scope&quot;, controller],</code>
+<code class="javascript">                templateUrl: TEMPLATES_URL + &quot;/cache-manager.directive.html&quot;</code>
+<code class="javascript">            };</code>
+<code class="javascript">        }]);</code></pre>            </div>
+        </div>
+    </div>
+</section><section class="slide cover w" id="Few-things-title">
+    <div>
+        <h2>Enough code</h2>
+        <br/>
+        <h3 class="next">Just a few more things <br/> in a conclusion.</h3>
+        <img src="pictures/enough2.jpg" alt="">
+    </div>
+</section><section class="slide cover w" id="Angular-projects-sources">
+    <div>
+        <h2>Angular Projects</h2>
+        <ul>
+            <li><a target="_blank" href="https://builtwith.angularjs.org/">https://builtwith.angularjs.org/</a></li>
+            <li><a target="_blank" href="https://github.com/angular/angular.js/wiki/Projects-using-AngularJS">https://github.com/angular/angular.js/wiki/Projects-using-AngularJS</a></li>
+        </ul>
+        <img src="pictures/background.png" alt="">
+    </div>
+</section><section class="slide cover w" id="Angular-projects-list">
+    <div>
+        <h2>Angular Projects</h2>
+        <ul>
+            <li>
+                <a target="_blank" href="https://www.kontaktkarte.de/app.html">Kontaktkarte</a>
+                &mdash; Contact book
+            </li>
+            <li>
+                <a target="_blank" href="http://hat.jit.su/">Hatjitsu</a>
+                &mdash; Distributed online scrum planning poker
+            </li>
+            <li>
+                <a target="_blank" href="http://sbb.cellfinder.org/">Semantic Body Browser</a>
+                &mdash; A tool for graphically exploring an organism
+            </li>
+            <li>
+                <a target="_blank"
+                   href="https://play.google.com/store/apps/details?id=com.mgrach.drugsearch">Drugsearch</a>
+                &mdash; Android app for searching drugs in dragstores
+            </li>
+            <li>
+                <a target="_blank"
+                   href="http://lab.rtve.es/serie-isabel/personajes/">Mapa de personajes de la serie Isabel</a>
+                &mdash; The characters map in the “Isabel” series; <span class="fave">&hearts;</span>
+            </li>
+        </ul>
+        <img src="pictures/background.png" alt="">
+    </div>
+</section><section class="slide cover w" id="Angular-is-for">
+    <div>
+        <h2>Angular is for:</h2>
+        <ul>
+            <li><strong>Web apps</strong> (single-page apps, mobile apps, browser extensions, etc.)</li>
+            <li class="next"><strong>Interactive websites</strong> (social networks, content management, admin panels)</li>
+            <li class="next"><strong>Interactive pages</strong> (checkout, statistics, graphics, reports, etc.)</li>
+            <li class="next"><strong>Fun</strong></li>
+        </ul>
+        <img src="pictures/background.png" alt="">
+    </div>
+</section><section class="slide cover w" id="Angular-is-not-for">
+    <div>
+        <h2>Angular is not for:</h2>
+        <ul class="pull-left col-1-2">
+            <li>Blogs</li>
+            <li>News</li>
+            <li>Affiliates</li>
+        </ul>
+        <ul class="pull-left col-1-2">
+            <li>Corporate websites</li>
+            <li>E-Commerce</li>
+            <li>Wikis</li>
+        </ul>
+        <p>Of course it's not a rule.</p>
+        <img src="pictures/background.png" alt="">
+    </div>
+</section>    <div class="progress"><div></div></div>
+    <script src="/assets/scripts/shower-tweaks.js"></script>
+    <script src="/assets/scripts/shower-tweaks-angular.js"></script>
+    <script src="/shows/angular/scripts/angular-is-super-cool.js"></script>
+</body>
+</html>

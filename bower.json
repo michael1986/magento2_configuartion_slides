@@ -1,0 +1,23 @@
+{
+  "name": "shower-shows",
+  "description": "Max's Shower Shows",
+  "homepage": "https://github.com/Radio/shower-shows",
+  "version": "0.1.1",
+  "license": "MIT",
+  "authors": [
+    "Max Gopey <gopeyx@gmail.com>"
+  ],
+  "main": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "shower-bright": "~1.0.11",
+    "shower-core": "~1.0.7",
+    "shower-ribbon": "~1.0.11"
+  }
+}

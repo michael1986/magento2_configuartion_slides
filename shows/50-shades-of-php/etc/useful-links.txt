@@ -1,0 +1,43 @@
+# PHP History
+
+    History of PHP
+        http://php.net/manual/en/history.php.php
+    PHP-general mailing list
+        http://marc.info/?l=php-general&r=1&w=2
+    Announce: Personal Home Page Tools (PHP Tools) – Группы Google
+        https://groups.google.com/forum/#!msg/comp.infosystems.www.authoring.cgi/PyJ25gZ6z7A/M9FkTUVDfcwJ
+
+# Dynamic Typing
+
+    What is the difference between statically typed and dynamically typed languages? - Stack Overflow
+        http://stackoverflow.com/questions/1517582/what-is-the-difference-between-statically-typed-and-dynamically-typed-languages
+    Introduction to Static and Dynamic Typing
+        http://www.sitepoint.com/typing-versus-dynamic-typing/
+
+# PHP 5 
+
+    Zoom on PHP objects and classes (PHP 5)
+        http://jpauli.github.io/2015/03/24/zoom-on-php-objects.html
+
+
+# PHP 6 (Unicode)
+
+    The Good, the Bad, and the Ugly: What Happened to Unicode and PHP 6
+        http://www.slideshare.net/andreizm/the-good-the-bad-and-the-ugly-what-happened-to-unicode-and-php-6
+
+# PHP 7
+
+    PHP 7 Timetable
+        https://wiki.php.net/todo/php70#timetable
+    What to Expect When You&#39;re Expecting: PHP 7, Part 1
+        https://blog.engineyard.com/2015/what-to-expect-php-7
+    What to Expect When You&#39;re Expecting: PHP 7, Part 2
+        https://blog.engineyard.com/2015/what-to-expect-php-7-2
+    HHVM vs PHP 7 - The Competition Gets Closer - Kinsta
+        https://kinsta.com/blog/hhvm-vs-php-7/
+    PHP: Throwable - Manual
+        http://php.net/manual/en/class.throwable.php
+    PHP: Exceptions - Manual
+        http://php.net/manual/en/spl.exceptions.php
+    PHP: Predefined Exceptions - Manual
+        http://php.net/manual/en/reserved.exceptions.php
