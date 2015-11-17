@@ -1,3 +1,4 @@
+#!/usr/local/php7/bin/php
 <?php
 
 const SOURCE_DIR = __DIR__ . '/' . 'shows';
