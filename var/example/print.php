@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../helpers.php';
     <link rel="stylesheet" href="styles/shower-theme-customization.css">
     <link rel="stylesheet" href="/assets/styles/highlight/solarized_light.min.css">
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/print.css" media="print">
+    <link rel="stylesheet" href="styles/print.css">
 
     <script src="/bower_components/shower-core/shower.min.js"></script>
     <script src="/assets/scripts/highlight/highlight.min.js"></script>
@@ -24,7 +24,7 @@ require_once __DIR__ . '/../../helpers.php';
         <p>By Max</p>
     </header>
     <?php
-    $slides = getSlides(__DIR__, excludeSlides([1000]));
+    $slides = getSlides(__DIR__);
     renderSlides($slides)
     ?>
     <div class="progress"><div></div></div>
