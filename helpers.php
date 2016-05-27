@@ -1,4 +1,7 @@
 <?php
+
+const ROOT = __DIR__;
+
 /**
  * Render code ready for highlighting.
  *
@@ -34,8 +37,7 @@ function code($lang, $code, $wrapWithPre = true) {
  *
  * @return array
  */
-function getSlides($root, callable $filterCallback = null)
-{
+function getSlides($root, callable $filterCallback = null) {
     $slides = glob($root . '/*.slide.php');
     if ($filterCallback !== null) {
         $slides = array_filter($slides, $filterCallback);
@@ -89,8 +91,7 @@ function includeSlides($includeList) {
  *
  * @param array $slides Slides paths.
  */
-function renderSlides($slides)
-{
+function renderSlides($slides) {
     foreach ($slides as $slideFile) {
         echo PHP_EOL;
         include $slideFile;
@@ -105,7 +106,17 @@ function renderSlides($slides)
  *
  * @return mixed
  */
-function getSlideId($filename)
-{
+function getSlideId($filename) {
     return preg_replace('/.*\/[\d-]+\.(.+)\.slide\.php$/', '$1', $filename);
+}
+
+/**
+ * Get href attribute value for <base> tag.
+ *
+ * @param string $pathToShow
+ *
+ * @return string
+ */
+function getBaseHref($pathToShow) {
+    return str_replace(ROOT, '', $pathToShow) . '/';
 }
