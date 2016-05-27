@@ -438,12 +438,12 @@
              data-ng-controller="example4Controller">
             <div class="pull-left col-1-2">
     <div class="small-gap">
-        <label><strong>UAH:</strong> <input type="number" data-ng-model="amount" /></label>
+        <label><strong>USD:</strong> <input type="number" data-ng-model="amount" /></label>
     </div>
 </div>
 <div class="pull-left col-1-2">
     <div class="small-gap">
-        <div class="pull-left col-1-3"><strong>USD:</strong> {{ converted.USD | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>AUD:</strong> {{ converted.AUD | number:2 }}</div>
         <div class="pull-left col-1-3"><strong>EUR:</strong> {{ converted.EUR | number:2 }}</div>
         <div class="pull-left col-1-3"><strong>GBP:</strong> {{ converted.GBP | number:2 }}</div>
     </div>
@@ -451,8 +451,8 @@
             <hr>
             <div class="fs-65 next" data-ng-non-bindable>
                 <pre class="code no-margin">
-                <code class="html">&lt;div&gt;UAH: &lt;input type=&quot;text&quot; data-ng-model=&quot;amount&quot; /&gt;&lt;/div&gt;</code>
-<code class="html">&lt;div&gt;USD: {{ converted.USD | number:2 }}&lt;/div&gt;</code>
+                <code class="html">&lt;div&gt;USD: &lt;input type=&quot;text&quot; data-ng-model=&quot;amount&quot; /&gt;&lt;/div&gt;</code>
+<code class="html">&lt;div&gt;AUD: {{ converted.AUD | number:2 }}&lt;/div&gt;</code>
 <code class="html">&lt;div&gt;EUR: {{ converted.EUR | number:2 }}&lt;/div&gt;</code>
 <code class="html">&lt;div&gt;GBP: {{ converted.GBP | number:2 }}&lt;/div&gt;</code>                </pre>
             </div>
@@ -465,12 +465,12 @@
              data-ng-controller="example4Controller">
             <div class="pull-left col-1-2">
     <div class="small-gap">
-        <label><strong>UAH:</strong> <input type="number" data-ng-model="amount" /></label>
+        <label><strong>USD:</strong> <input type="number" data-ng-model="amount" /></label>
     </div>
 </div>
 <div class="pull-left col-1-2">
     <div class="small-gap">
-        <div class="pull-left col-1-3"><strong>USD:</strong> {{ converted.USD | number:2 }}</div>
+        <div class="pull-left col-1-3"><strong>AUD:</strong> {{ converted.AUD | number:2 }}</div>
         <div class="pull-left col-1-3"><strong>EUR:</strong> {{ converted.EUR | number:2 }}</div>
         <div class="pull-left col-1-3"><strong>GBP:</strong> {{ converted.GBP | number:2 }}</div>
     </div>
@@ -480,23 +480,24 @@
                 <pre class="code no-margin">
                 <code class="javascript">angular.module(&quot;angulardemo&quot;)</code>
 <code class="javascript">    .controller(&quot;example4Controller&quot;, function($scope, ExchangeRate) {</code>
-<code class="javascript">        $scope.converted = {&quot;USD&quot;: 0, &quot;EUR&quot;: 0, &quot;GBP&quot;: 0};</code>
+<code class="javascript">        $scope.converted = {&quot;AUD&quot;: 0, &quot;EUR&quot;: 0, &quot;GBP&quot;: 0};</code>
 <code class="javascript">        $scope.$watch(&quot;amount&quot;, function(amount) {</code>
 <code class="javascript">            angular.forEach($scope.converted, function(convertedValue, currency) {</code>
-<code class="javascript">                ExchangeRate.getRate(&quot;UAH&quot;, currency).then(function(response) {</code>
-<code class="javascript">                    $scope.converted[currency] = (parseFloat(amount) || 0)</code>
-<code class="javascript">                        * (response.data.rate || 0);</code>
+<code class="javascript">                ExchangeRate.getRate(&quot;USD&quot;, currency).then(function(rate) {</code>
+<code class="javascript">                    $scope.converted[currency] = (parseFloat(amount) || 0) * (rate || 0);</code>
 <code class="javascript">                });</code>
 <code class="javascript">            });</code>
 <code class="javascript">        });</code>
 <code class="javascript">    })</code>
 <code class="javascript">    .factory(&quot;ExchangeRate&quot;, [&quot;$http&quot;, function($http) {</code>
-<code class="javascript">        var apiUrl = &quot;http://jsonrates.com/get/&quot;;</code>
-<code class="javascript">        var apiKey = &quot;jr-1c7042ea799d59b6daa30515862ec36c&quot;;</code>
+<code class="javascript">        var apiUrl = &quot;http://apilayer.net/api/live?access_key=XXX&quot;;</code>
 <code class="javascript">        return {</code>
 <code class="javascript">            getRate: function(from, to) {</code>
-<code class="javascript">                return $http.jsonp(apiUrl + &quot;?from=&quot; + from + &quot;&amp;to=&quot; + to</code>
-<code class="javascript">                    + &quot;&amp;apiKey=&quot; + apiKey + &quot;&amp;callback=JSON_CALLBACK&quot;, {cache: true});</code>
+<code class="javascript">                var requestUrl = apiUrl + &quot;&amp;source=&quot; + from + &quot;&amp;currencies=&quot; + to</code>
+<code class="javascript">                    + &quot;&amp;callback=JSON_CALLBACK&quot;;</code>
+<code class="javascript">                return $http.jsonp(requestUrl, {cache: true}).then(function(response) {</code>
+<code class="javascript">                    return response.data.quotes[from + to];</code>
+<code class="javascript">                });</code>
 <code class="javascript">            }</code>
 <code class="javascript">        }</code>
 <code class="javascript">    }]);</code>                </pre>
@@ -526,6 +527,31 @@
 <code class="html">    &lt;div data-cache-manager&gt;&lt;/div&gt;</code>
 <code class="html">    ...</code>
 <code class="html">&lt;/footer&gt;</code></pre>            </div>
+        </div>
+    </div>
+</section><section class="slide full-page" id="Directives-example5.2">
+    <div>
+        <h2>Cache manager directive</h2>
+        <div class="example-source">
+            <div class="fs-65" data-ng-non-bindable>
+                <pre class="code no-margin">
+                <code class="javascript">// app/js/modules/agile/directives/cache_manager.js</code>
+<code class="javascript">angular.module(&quot;agile.directives&quot;)</code>
+<code class="javascript">    .directive(&quot;cacheManager&quot;,</code>
+<code class="javascript">        function($templateCache, Storage, Helper, TEMPLATES_URL) {</code>
+<code class="javascript">            return {</code>
+<code class="javascript">                scope: {},</code>
+<code class="javascript">                controller: function ($scope) {</code>
+<code class="javascript">                    $scope.clear = function() {</code>
+<code class="javascript">                        $templateCache.removeAll();</code>
+<code class="javascript">                        Storage.clearAll();</code>
+<code class="javascript">                        Helper.setAlert(&quot;success&quot;, &quot;Cache has been cleared.&quot;)</code>
+<code class="javascript">                    }</code>
+<code class="javascript">                },</code>
+<code class="javascript">                templateUrl: TEMPLATES_URL + &quot;/cache-manager.directive.html&quot;</code>
+<code class="javascript">            };</code>
+<code class="javascript">        });</code>                </pre>
+            </div>
             <div class="next fs-65" data-ng-non-bindable>
                 <hr>
                 <pre class="code no-margin">
@@ -534,33 +560,6 @@
 <code class="html">    &lt;button type=&quot;button&quot; data-ng-click=&quot;clear()&quot;&gt;Clear Cache&lt;/button&gt;</code>
 <code class="html">&lt;/div&gt;</code>                </pre>
             </div>
-        </div>
-    </div>
-</section><section class="slide full-page" id="Directives-example5.2">
-    <div>
-        <h2>Cache manager directive</h2>
-        <div class="example-source">
-            <div class="fs-65" data-ng-non-bindable>
-                <pre class="code"><code class="javascript">// app/js/modules/agile/directives/cache_manager.js</code>
-<code class="javascript">angular.module(&quot;agile.directives&quot;)</code>
-<code class="javascript">    .directive(&quot;cacheManager&quot;, [</code>
-<code class="javascript">        &quot;$templateCache&quot;, &quot;localStorageService&quot;, &quot;Helper&quot;, &quot;TEMPLATES_URL&quot;,</code>
-<code class="javascript">        function($templateCache, Storage, Helper, TEMPLATES_URL) {</code>
-<code class="javascript">&nbsp;</code>
-<code class="javascript">            function controller($scope) {</code>
-<code class="javascript">                $scope.clear = function() {</code>
-<code class="javascript">                    $templateCache.removeAll();</code>
-<code class="javascript">                    Storage.clearAll();</code>
-<code class="javascript">                    Helper.setAlert(&quot;success&quot;, &quot;Cache has been cleared.&quot;)</code>
-<code class="javascript">                }</code>
-<code class="javascript">            }</code>
-<code class="javascript">&nbsp;</code>
-<code class="javascript">            return {</code>
-<code class="javascript">                scope: {},</code>
-<code class="javascript">                controller: [&quot;$scope&quot;, controller],</code>
-<code class="javascript">                templateUrl: TEMPLATES_URL + &quot;/cache-manager.directive.html&quot;</code>
-<code class="javascript">            };</code>
-<code class="javascript">        }]);</code></pre>            </div>
         </div>
     </div>
 </section><section class="slide cover w" id="Few-things-title">

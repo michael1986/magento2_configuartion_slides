@@ -11,23 +11,24 @@
                 <?php echo code('
 angular.module("angulardemo")
     .controller("example4Controller", function($scope, ExchangeRate) {
-        $scope.converted = {"USD": 0, "EUR": 0, "GBP": 0};
+        $scope.converted = {"AUD": 0, "EUR": 0, "GBP": 0};
         $scope.$watch("amount", function(amount) {
             angular.forEach($scope.converted, function(convertedValue, currency) {
-                ExchangeRate.getRate("UAH", currency).then(function(response) {
-                    $scope.converted[currency] = (parseFloat(amount) || 0)
-                        * (response.data.rate || 0);
+                ExchangeRate.getRate("USD", currency).then(function(rate) {
+                    $scope.converted[currency] = (parseFloat(amount) || 0) * (rate || 0);
                 });
             });
         });
     })
     .factory("ExchangeRate", ["$http", function($http) {
-        var apiUrl = "http://jsonrates.com/get/";
-        var apiKey = "jr-1c7042ea799d59b6daa30515862ec36c";
+        var apiUrl = "http://apilayer.net/api/live?access_key=XXX";
         return {
             getRate: function(from, to) {
-                return $http.jsonp(apiUrl + "?from=" + from + "&to=" + to
-                    + "&apiKey=" + apiKey + "&callback=JSON_CALLBACK", {cache: true});
+                var requestUrl = apiUrl + "&source=" + from + "&currencies=" + to
+                    + "&callback=JSON_CALLBACK";
+                return $http.jsonp(requestUrl, {cache: true}).then(function(response) {
+                    return response.data.quotes[from + to];
+                });
             }
         }
     }]);

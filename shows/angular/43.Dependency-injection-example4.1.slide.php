@@ -9,8 +9,8 @@
             <div class="fs-65 next" data-ng-non-bindable>
                 <pre class="code no-margin">
                 <?php echo code('
-<div>UAH: <input type="text" data-ng-model="amount" /></div>
-<div>USD: {{ converted.USD | number:2 }}</div>
+<div>USD: <input type="text" data-ng-model="amount" /></div>
+<div>AUD: {{ converted.AUD | number:2 }}</div>
 <div>EUR: {{ converted.EUR | number:2 }}</div>
 <div>GBP: {{ converted.GBP | number:2 }}</div>
 ',
