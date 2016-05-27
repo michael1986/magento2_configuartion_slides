@@ -1,0 +1,137 @@
+.slide {
+  background: #000000;
+  color: #ffffff;
+}
+.slide.shout h2 {
+  top: 45%;
+  font-weight: 600;
+}
+.slide.shout h2.center {
+  margin-left: -28px;
+}
+.slide.full-page > div {
+  padding: 50px 96px 20px 128px;
+  height: 570px;
+}
+.slide.full-page > div h2 {
+  margin-bottom: 36px;
+  font-size: 36px;
+}
+.slide small,
+.slide .small {
+  font-size: 0.7em;
+}
+.slide small p,
+.slide .small p,
+.slide small ul,
+.slide .small ul {
+  margin-bottom: 20px;
+}
+.slide sup {
+  font-size: 0.5em;
+  position: relative;
+  top: -1.2em;
+}
+.slide sup sup {
+  font-size: 0.65em;
+}
+.slide p {
+  margin: 0 0 48px;
+}
+.slide hr {
+  background: transparent;
+  border: 1px solid rgba(136, 136, 136, 0.5);
+  border-bottom: 0 none;
+}
+.slide pre code,
+.slide pre .hljs {
+  background-color: #000;
+  padding: 0 5px;
+}
+.slide .no-gap {
+  line-height: 1.1em;
+}
+.slide .small-gap {
+  line-height: 1.5em;
+}
+.slide .no-margin {
+  margin: 0;
+}
+.slide .pull-left {
+  float: left;
+}
+.slide .pull-right {
+  float: right;
+}
+.slide .center {
+  text-align: center;
+}
+.slide .clear {
+  clear: both;
+}
+.slide .col-1-2 {
+  width: 50%;
+}
+.slide .col-1-3 {
+  width: 33.33%;
+}
+.slide .fs-80 {
+  font-size: .8em;
+  line-height: 1.5em;
+}
+.slide .fs-80 code {
+  line-height: 1.5em;
+}
+.slide .fs-65 {
+  font-size: .65em;
+  line-height: 1.4em;
+}
+.slide .fs-65 code {
+  line-height: 1.4em;
+}
+.slide .fs-60 {
+  font-size: .6em;
+  line-height: 1.3em;
+}
+.slide .fs-60 code {
+  line-height: 1.3em;
+}
+.slide .fs-50 {
+  font-size: .5em;
+  line-height: 1.3em;
+}
+.slide .fs-50 code {
+  line-height: 1.3em;
+}
+.slide pre.real-pre {
+  counter-reset: code;
+  white-space: pre;
+  font-family: monospace;
+  line-height: 1.28em;
+}
+/* Custom styles */
+.slide:after {
+  text-align: right;
+  padding-right: 50px;
+}
+.mad-1 {
+  text-decoration: underline;
+}
+.mad-2 {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #10ff16;
+}
+.mad-3 {
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: #fff203;
+}
+.mad-4 {
+  text-decoration: underline;
+  text-decoration-style: double;
+  text-decoration-color: #ff00d6;
+}
+.useful-links ul {
+  margin-bottom: 10px;
+}
