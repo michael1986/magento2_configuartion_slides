@@ -3,6 +3,7 @@
 1. [AngularJS is super cool](shows/angular)
 2. [50 shades of PHP](shows/50-shades-of-php)
 3. [Another PHP](shows/another-php)
+4. [Code Securely](shows/code-securely)
 
 This repo also provides a simple framework which helps with preparing the shows if you now some php.
 
