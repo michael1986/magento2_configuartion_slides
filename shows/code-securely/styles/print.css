@@ -1,0 +1,15 @@
+.slide {
+  background: #fff;
+  color: #333;
+}
+.slide pre code,
+.slide pre .hljs {
+  background-color: #fff;
+}
+a {
+  background: none;
+  text-decoration: underline;
+}
+.no-print {
+  display: none;
+}

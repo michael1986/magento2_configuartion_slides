@@ -1,10 +1,12 @@
 <?php
+$title = 'Code Securely';
 require_once __DIR__ . '/../../helpers.php';
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Example title</title>
+    <base href="<?php echo getBaseHref(__DIR__) ?>">
+    <title><?php echo $title ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=792, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -13,14 +15,17 @@ require_once __DIR__ . '/../../helpers.php';
     <link rel="stylesheet" href="styles/shower-theme-customization.css">
     <link rel="stylesheet" href="/assets/styles/highlight/solarized_light.min.css">
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/print.css">
+    <link rel="stylesheet" href="styles/print.css" media="print">
 
     <script src="/bower_components/shower-core/shower.min.js"></script>
     <script src="/assets/scripts/highlight/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
 </head>
 <body class="list">
     <header class="caption">
-        <h1>Example is super cool.</h1>
+        <h1><?php echo $title ?></h1>
         <p>By Max</p>
     </header>
     <?php
