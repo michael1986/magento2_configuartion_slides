@@ -8,10 +8,11 @@ const ROOT = __DIR__;
  * @param string    $lang        Language for highlighting.
  * @param string    $code        Code itself.
  * @param bool|true $wrapWithPre Wrap code with <pre> tag?
+ * @param string    $preClasses  Additional <pre> classes.
  *
  * @return string
  */
-function code($lang, $code, $wrapWithPre = true) {
+function code($lang, $code, $wrapWithPre = true, $preClasses = '') {
     $lines = explode("\n", $code);
     if (!strlen(trim($lines[0]))) {
         array_shift($lines);
@@ -25,7 +26,7 @@ function code($lang, $code, $wrapWithPre = true) {
         return sprintf('<code class="%s">%s</code>', $lang, $escapedLine);
     }, $lines));
 
-    return $wrapWithPre ? '<pre class="code">' . $code . '</pre>' : $code;
+    return $wrapWithPre ? '<pre class="code ' . $preClasses . '">' . $code . '</pre>' : $code;
 }
 
 

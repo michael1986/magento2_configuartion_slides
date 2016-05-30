@@ -1,10 +1,12 @@
 <?php
+$title = 'Example';
 require_once __DIR__ . '/../../helpers.php';
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Example title</title>
+    <base href="<?php echo getBaseHref(__DIR__) ?>">
+    <title><?php echo $title ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=792, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -17,14 +19,15 @@ require_once __DIR__ . '/../../helpers.php';
 
     <script src="/bower_components/shower-core/shower.min.js"></script>
     <script src="/assets/scripts/highlight/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body class="list">
     <header class="caption">
-        <h1>Example is super cool.</h1>
+        <h1><?php echo $title ?> is super cool.</h1>
         <p>By Max</p>
     </header>
     <?php
-    $slides = getSlides(__DIR__, excludeSlides([1000]));
+    $slides = getSlides(__DIR__, excludeSlides([]));
     renderSlides($slides)
     ?>
     <div class="progress"><div></div></div>

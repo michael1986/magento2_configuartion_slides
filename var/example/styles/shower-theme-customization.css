@@ -14,6 +14,10 @@
   margin-bottom: 36px;
   font-size: 36px;
 }
+.slide:after {
+  text-align: right;
+  padding-right: 50px;
+}
 .slide small,
 .slide .small {
   font-size: 0.7em;
@@ -90,88 +94,12 @@
 .slide .fs-50 code {
   line-height: 1.3em;
 }
-#Roles ul {
-  margin-left: 50px;
+.slide .subtitle {
+  margin-top: -50px;
 }
-#Roles ul li span {
-  color: #000;
-  font-style: italic;
+.slide .no-margin-bottom {
+  margin-bottom: 10px;
 }
-#Roles ul li span hr {
-  position: absolute;
-  border-color: #ccc;
-}
-#Roles ul li span.tm-nk i {
-  position: relative;
-  top: 1.3em;
-  left: -70px;
-}
-#Roles .icon {
-  position: absolute;
-}
-#Roles .icon.eg {
-  left: 700px;
-  top: 100px;
-}
-#Roles .icon.ob {
-  left: 820px;
-  top: 150px;
-}
-#Roles .icon.ak {
-  left: 750px;
-  top: 265px;
-}
-#Roles .icon.nk {
-  left: 870px;
-  top: 310px;
-}
-#Roles .icon.ov {
-  left: 700px;
-  top: 400px;
-}
-#Roles .icon.mg {
-  left: 820px;
-  top: 450px;
-}
-#Roles hr.eg {
-  width: 155px;
-  left: 537px;
-  top: 198px;
-  transform: rotate(-15deg);
-}
-#Roles hr.ob {
-  width: 345px;
-  left: 463px;
-  top: 246px;
-  transform: rotate(-7deg);
-}
-#Roles hr.ak {
-  width: 186px;
-  left: 548px;
-  top: 311px;
-  transform: rotate(-3deg);
-}
-#Roles hr.nk {
-  width: 190px;
-  left: 670px;
-  top: 366px;
-  transform: rotate(10deg);
-}
-#Roles hr.ov {
-  width: 256px;
-  left: 430px;
-  top: 414px;
-  transform: rotate(1deg);
-}
-#Roles hr.mg {
-  width: 369px;
-  left: 440px;
-  top: 491px;
-  transform: rotate(9deg);
-}
-#Roles hr.ak-dl {
-  width: 268px;
-  left: 501px;
-  top: 420px;
-  transform: rotate(-40deg);
+.slide .margin-left {
+  margin-left: 40px;
 }
