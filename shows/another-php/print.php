@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../helpers.php';
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
+    <base href="<?php echo getBaseHref(__DIR__) ?>">
     <title>Another PHP</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=792, user-scalable=no">
