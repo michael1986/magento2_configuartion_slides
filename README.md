@@ -5,7 +5,7 @@
 3. [Another PHP](shows/another-php)
 4. [Code Securely](shows/code-securely)
 
-This repo also provides a simple framework which helps with preparing the shows if you now some php.
+This repo also provides a simple framework which helps with preparing the shows if you know some php.
 
 See [helpers.php](helpers.php) for available functions.
 
