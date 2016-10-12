@@ -6,7 +6,7 @@
         <ul>
             <li>Don't use <strong>eval()</strong>.</li>
             <li>Don't use <strong>eval()</strong>, please.</li>
-            <li>Ok, than don't trust any input.</li>
+            <li>Ok, then don't trust any input.</li>
             <li>Any means any.</li>
         </ul>
     </div>

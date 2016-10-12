@@ -1,6 +1,6 @@
 <section class="slide" id="<?= getSlideId(__FILE__) ?>">
     <div>
-        <h2><strong>Security principles</strong></h2>
+        <h2><strong>(Some proven)   Security principles</strong></h2>
 
         <ul class="small">
             <li> Apply <a href="https://www.owasp.org/index.php/Defense_in_depth"
