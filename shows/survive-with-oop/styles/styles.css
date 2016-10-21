@@ -1,0 +1,21 @@
+.slide {
+  background-image: url(../images/background.png);
+}
+.slide.shout {
+  background-image: url(../images/background.png);
+}
+#Title {
+  background-image: url(../images/eatdog-logo.png), url(../images/background-1st-slide.jpg);
+  background-size: 30%, 100%;
+  background-position: 80px 100px, 0 0;
+  background-repeat: no-repeat;
+}
+#Title h2 {
+  color: #ee4024;
+  text-align: left !important;
+  font-weight: bold;
+  top: 60%;
+  left: 70px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 78px;
+}
